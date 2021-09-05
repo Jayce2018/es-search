@@ -1,0 +1,45 @@
+
+DELETE /idx_cloth
+{}
+
+POST /idx_cloth/_doc/_delete_by_query
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+GET /idx_cloth
+{}
+
+GET /idx_cloth/_doc/_search
+{}
+
+
+
+GET /idx_cloth/_doc/_search
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "match": {
+            "name": "nike"
+          }
+        },
+        {
+          "match": {
+            "desc": "换季"
+          }
+        }
+      ]
+    }
+  }
+}
+
+
+
+
+
+GET /_analyze?
+{"analyzer" : "ik_max_word",  "text" : "新版日系毛衣"}
